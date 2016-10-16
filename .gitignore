@@ -1,0 +1,5 @@
+.serverless/
+node_modules/
+*.iml
+.idea/
+target/

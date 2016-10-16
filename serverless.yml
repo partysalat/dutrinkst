@@ -1,0 +1,31 @@
+
+service: dutrinkst # NOTE: update this with your service name
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+  stage: dev
+  region: eu-west-1
+  profile: default
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+custom:
+  vars: ${file(./serverless.vars.yml)}
+  webpack: ./webpack.config.js
+  serverless-offline:
+    babelOptions:
+      presets: ["es2015", "stage-2"]
+
+functions:
+  hello:
+    handler: handler.dutrinkst
+    events:
+          - http:
+              method: GET
+              path: dutrinkst
+              request: ${file(./serverless.templates.yml):request}
+              response: ${file(./serverless.templates.yml):response}
