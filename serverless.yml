@@ -16,16 +16,18 @@ plugins:
 custom:
   vars: ${file(./serverless.vars.yml)}
   webpack: ./webpack.config.js
+  webpackIncludeModules: true
   serverless-offline:
     babelOptions:
       presets: ["es2015", "stage-2"]
 
 functions:
-  hello:
-    handler: handler.dutrinkst
+  index:
+    handler: lib/server/handlers/indexHandler.dutrinkst
     events:
-          - http:
-              method: GET
-              path: dutrinkst
-              request: ${file(./serverless.templates.yml):request}
-              response: ${file(./serverless.templates.yml):response}
+      - http:
+          method: GET
+          path: dutrinkst
+          integration: lambda
+          request: ${file(./serverless.templates.yml):request-html}
+          response: ${file(./serverless.templates.yml):response-html}

@@ -1,13 +1,14 @@
 var
   gulp = require("gulp"),
-  awspublish = require('gulp-awspublish');
+  awspublish = require('gulp-awspublish'),
+  rename = require("gulp-rename");
 
 gulp.task('_aws:deploy',function(){
 
   var publisher = awspublish.create({
     region: 'eu-west-1',
     params: {
-      Bucket: 'klavega.web.assets',
+      Bucket: 'dutrinkst',
       ACL: 'public-read'
     }
   }, {
@@ -15,15 +16,13 @@ gulp.task('_aws:deploy',function(){
   });
   var headers = {
     'Cache-Control': 'max-age=315360000, no-transform, public'
-    // ...
   };
 
   return gulp.src("./target/assets/**/*")
-    //.pipe(awspublish.gzip({ ext: '.gz' }))
+    .pipe(rename(function (path) {
+      path.dirname += '/assets';
+    }))
     .pipe(publisher.publish(headers))
-    //.pipe(publisher.cache())
-
-    // print upload updates to console 
     .pipe(awspublish.reporter());
 });
 

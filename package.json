@@ -4,15 +4,19 @@
   "description": "justKile and Astrobra presents: DuTrinkst",
   "main": "index.js",
   "scripts": {
+    "clean":"rm -rf target",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sls offline start --port 2999 & gulp watch"
+    "server": "gulp serve & sls offline start --port 2999",
+    "watch": "npm run clean && (npm run server & gulp watch)",
+    "start": "npm run clean && npm run build:client && npm run server",
+    "deploy": "sls deploy",
+    "build:client": "gulp build:client",
+    "build":"npm run clean && npm run build:client"
   },
   "author": "Ben Lenser",
   "license": "MIT",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "require-dir": "^0.3.1",
-    "serverless": "^1.0.2"
+    "lodash": "^4.16.4"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
@@ -23,15 +27,22 @@
     "babel-register": "^6.16.3",
     "bootstrap-styl": "^5.0.8",
     "browser-sync": "^2.17.2",
+    "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "^3.9.1",
     "gulp-awspublish": "^3.3.0",
+    "gulp-rename": "^1.2.2",
     "gulp-serve": "^1.4.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.16.4",
     "mkdirp": "^0.5.1",
-    "pug": "^2.0.0-beta6",
-    "pug-loader": "^2.3.0",
+    "require-dir": "^0.3.1",
+    "serverless": "^1.0.2",
     "serverless-offline": "git+https://github.com/dherault/serverless-offline.git/#serverless_v1",
     "serverless-webpack": "^1.0.0-rc.2",
+    "style-loader": "^0.13.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.3.1",
     "webpack-node-externals": "^1.5.4",
     "webpack-stream": "^3.2.0"
   }

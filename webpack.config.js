@@ -1,10 +1,10 @@
 var
   webpack = require('webpack'),
-  nodeExternals = require('webpack-node-externals')
+  nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   // entry: provided by serverless
-  entry: './handler.js',
+  entry: './lib/server/handlers/indexHandler.js',
   // output: provided by serverless
   target: 'node',
   externals: [
@@ -45,9 +45,6 @@ module.exports = {
       {
         test: /\.json?$/,
         loader: 'json'
-      }, {
-        test: /\.pug?$/,
-        loader: 'pug'
       },
       {
         test: /\.styl/,
