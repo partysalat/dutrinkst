@@ -4,19 +4,20 @@
   "description": "justKile and Astrobra presents: DuTrinkst",
   "main": "index.js",
   "scripts": {
-    "clean":"rm -rf target",
+    "clean": "rm -rf target",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "gulp serve & sls offline start --port 2999",
     "watch": "npm run clean && (npm run server & gulp watch)",
     "start": "npm run clean && npm run client:build && npm run server",
     "deploy": "npm run client:deploy && sls deploy",
-    "client:deploy":"gulp _aws:deploy",
+    "client:deploy": "gulp _aws:deploy",
     "client:build": "gulp build:client",
-    "build":"npm run clean && npm run client:build"
+    "build": "npm run clean && npm run client:build"
   },
   "author": "Ben Lenser",
   "license": "MIT",
   "dependencies": {
+    "confidence": "^3.0.2",
     "lodash": "^4.16.4"
   },
   "devDependencies": {
