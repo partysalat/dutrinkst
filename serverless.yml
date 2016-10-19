@@ -14,7 +14,6 @@ plugins:
   - serverless-offline
 
 custom:
-  vars: ${file(./serverless.vars.yml)}
   webpack: ./webpack.config.js
   webpackIncludeModules: true
   serverless-offline:
