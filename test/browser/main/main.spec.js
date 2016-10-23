@@ -1,31 +1,9 @@
-import test from 'ava';
+import {describe} from "ava-spec";
 
-test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  setTimeout(()=>{
+describe("main component", (it)=> {
+  it("passes", (t)=> {
     t.pass();
-  },6000)
+  });
 
 });
-test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  t.pass();
-});test('my passing test', t => {
-  t.pass();
-});
-test('my passing test', t => {
-  t.pass();
-});
+

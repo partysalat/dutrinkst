@@ -1,11 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
-var mkdirp = require("mkdirp");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const bootstrap = require("bootstrap-styl");
+const
+  path = require('path'),
+  webpack = require('webpack'),
+  mkdirp = require("mkdirp"),
+  bootstrap = require("bootstrap-styl"),
+  ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
   entry: {
-    app: './lib/client/main'
+    app: './lib/browser/main'
   },
   output: {
     filename: 'bundle-[hash].js'
@@ -35,7 +37,8 @@ module.exports = {
 
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000' },
+        loader: 'url-loader?limit=100000'
+      },
       {
         test: /\.jsx?$/,
         loader: 'babel',

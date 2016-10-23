@@ -3,7 +3,6 @@ var
   nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  // entry: provided by serverless
   entry: './lib/server/handlers/indexHandler.js',
   // output: provided by serverless
   target: 'node',
