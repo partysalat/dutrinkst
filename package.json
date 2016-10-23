@@ -14,7 +14,7 @@
     "browser:deploy": "gulp deploy:assets",
     "browser:build": "gulp build:client",
     "unit:server": "ava lib/server/**/*.spec.js --require babel-register",
-    "unit:browser": "ava lib/browser/**/*.spec.js --require ./test/browser/setup-browser-env.js --require babel-register" ,
+    "unit:browser": "ava lib/browser/**/*.spec.js --require ./test/browser/setup-browser-env.js --require babel-register",
     "unit:browser:watch": "ava lib/browser/**/*.spec.js --source 'lib/browser/**/*!(spec).js' --require ./test/browser/setup-browser-env.js --require babel-register --watch",
     "unit:server:watch": "ava lib/server/**/*.spec.js --source 'lib/server/**/*!(spec).js' --require babel-register --watch ",
     "unit": "npm run unit:server && npm run unit:browser",
@@ -61,7 +61,7 @@
     "react-dom": "^15.3.2",
     "require-dir": "^0.3.1",
     "serverless": "^1.0.2",
-    "serverless-offline": "git+https://github.com/dherault/serverless-offline.git/#serverless_v1",
+    "serverless-offline": "^3.1.0",
     "serverless-webpack": "^1.0.0-rc.2",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
@@ -75,7 +75,7 @@
     "failFast": true,
     "tap": false,
     "powerAssert": false,
-    "babel":"inherit",
+    "babel": "inherit",
     "verbose": true
   }
 }

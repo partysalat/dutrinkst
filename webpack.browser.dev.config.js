@@ -7,11 +7,15 @@ const
 
 module.exports = {
   entry: {
-    app: './lib/browser/main'
+    app: './lib/browser/main.jsx'
   },
   output: {
     filename: 'bundle-[hash].js'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  devtool: 'source-map',
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin("styles-[hash].css"),

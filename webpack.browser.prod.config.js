@@ -4,6 +4,7 @@ const
   webpack = require('webpack');
 
 let webpackConfig = _.cloneDeep(webpackDevConfig);
+delete webpackConfig.devtool;
 webpackConfig.plugins = webpackConfig.plugins.concat(
   new webpack.DefinePlugin({
     "process.env": {
