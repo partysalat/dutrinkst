@@ -8,7 +8,7 @@ gulp.task('_watch', ["_start:bs",'_scripts:watch'], function () {
 });
 
 gulp.task("_reload", function () {
-  console.log("reload")
+  console.log("Reload browser-sync");
   bs.reload();
 });
 
