@@ -54,6 +54,7 @@
     "gulp-awspublish": "^3.3.0",
     "gulp-rename": "^1.2.2",
     "gulp-serve": "^1.4.0",
+    "jeet": "^6.1.5",
     "json-loader": "^0.5.4",
     "lodash": "^4.16.4",
     "mkdirp": "^0.5.1",

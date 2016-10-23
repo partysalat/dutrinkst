@@ -3,6 +3,7 @@ const
   webpack = require('webpack'),
   mkdirp = require("mkdirp"),
   bootstrap = require("bootstrap-styl"),
+  jeet = require("jeet"),
   ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
@@ -30,7 +31,7 @@ module.exports = {
 
   ],
   stylus: {
-    use: [bootstrap()]
+    use: [bootstrap(),jeet()]
   },
   module: {
     loaders: [

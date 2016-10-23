@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import ProgressArc from './ProgressArc';
-import SpinningArrow from './SpinningArrow';
+import SpinningArrow from './SpinningArrow/SpinningArrow';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +15,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <span>Fooo</span>
-        <a href="#" onClick={this.togglePercent}>Toggle Arc</a>
-        <ProgressArc
+        <SpinningArrow
           height={300}
           width={300}
           innerRadius={100}
@@ -27,15 +24,6 @@ class App extends Component {
           duration={2000}
           backgroundColor="#e6e6e6"
           foregroundColor="#00ff00"
-          percentComplete={this.state.percentComplete}
-        />
-        <SpinningArrow
-          height={300}
-          width={300}
-          radius={100}
-          id="d3-arc-1"
-          duration={2000}
-          arrowColor="#e6e6e6"
           percentComplete={this.state.percentComplete}
         />
 
