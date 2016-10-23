@@ -14,7 +14,7 @@ plugins:
   - serverless-offline
 
 custom:
-  webpack: ./webpack.config.js
+  webpack: ./webpack.server.config.js
   webpackIncludeModules: true
   serverless-offline:
     babelOptions:

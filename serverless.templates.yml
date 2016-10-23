@@ -6,6 +6,6 @@ request-html:
       }
 response-html:
   headers:
-    #Content-Type: "'text/html'"
-    Content-Type: 'text/html'
+    Content-Type: "'text/html'"
+    #Content-Type: 'text/html'
   template: $input.path('$')
