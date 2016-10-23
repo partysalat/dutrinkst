@@ -13,14 +13,15 @@
     "server:deploy": "sls deploy -v",
     "browser:deploy": "gulp deploy:assets",
     "browser:build": "gulp build:client",
-    "unit:server": "ava lib/server/**/*.spec.js",
-    "unit:browser": "ava lib/browser/**/*.spec.js --require ./test/browser/setup-browser-env.js",
-    "unit:browser:watch": "ava lib/browser/**/*.spec.js --source lib/browser/**/*.js --require ./test/browser/setup-browser-env.js --watch",
-    "unit:server:watch": "ava lib/server/**/*.spec.js --source 'lib/server/**/*!(spec).js' --watch ",
+    "unit:server": "ava lib/server/**/*.spec.js --require babel-register",
+    "unit:browser": "ava lib/browser/**/*.spec.js --require ./test/browser/setup-browser-env.js --require babel-register" ,
+    "unit:browser:watch": "ava lib/browser/**/*.spec.js --source 'lib/browser/**/*!(spec).js' --require ./test/browser/setup-browser-env.js --require babel-register --watch",
+    "unit:server:watch": "ava lib/server/**/*.spec.js --source 'lib/server/**/*!(spec).js' --require babel-register --watch ",
     "unit": "npm run unit:server && npm run unit:browser",
     "unit:watch": "npm run unit:server:watch & npm run unit:browser:watch",
-    "build": "npm run clean && npm run browser:build && npm run unit",
-    "lint": "eslint lib/ --ignore-pattern=lib/**/*.spec.js"
+    "build": "npm run clean && npm run lint &&  npm run browser:build && npm run unit",
+    "lint": "eslint lib/ --ignore-pattern=lib/**/*.spec.js",
+    "lint:fix": "eslint lib/ --ignore-pattern=lib/**/*.spec.js --fix"
   },
   "author": "Ben Lenser",
   "license": "MIT",
@@ -41,6 +42,7 @@
     "browser-env": "^2.0.12",
     "browser-sync": "^2.17.2",
     "css-loader": "^0.25.0",
+    "d3": "^4.2.8",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.1",
@@ -55,6 +57,8 @@
     "json-loader": "^0.5.4",
     "lodash": "^4.16.4",
     "mkdirp": "^0.5.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "require-dir": "^0.3.1",
     "serverless": "^1.0.2",
     "serverless-offline": "git+https://github.com/dherault/serverless-offline.git/#serverless_v1",
@@ -71,9 +75,7 @@
     "failFast": true,
     "tap": false,
     "powerAssert": false,
-    "require": [
-      "babel-register"
-    ],
+    "babel":"inherit",
     "verbose": true
   }
 }
