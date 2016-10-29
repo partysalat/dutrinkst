@@ -14,8 +14,13 @@ class SpinningArrow extends Component {
   render() {
     const rotation = this.calcRotationFromProps();
     return (
-      <div className={['spinning-arrow', this.props.started ? '' : 'touch-up'].join(' ')}>
-        <img role="presentation" style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png" />
+      <div className="spinning-arrow">
+        <img
+          role="presentation"
+          style={rotation}
+          className={['spinning-arrow--img', this.props.started ? '' : 'spinning-arrow--img-touch-up'].join(' ')}
+          src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png"
+        />
       </div>
     );
   }

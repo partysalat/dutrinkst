@@ -1,13 +1,12 @@
 @import 'jeet'
-.touch-up .spinning-arrow-img
-  -webkit-transition: -webkit-transform 2s;
-  transition: transform 2s;
-  transition-timing-function: cubic-bezier(0,0,0.3,1);
 .spinning-arrow
   align(both)
-  &-img
+  &--img
     transform-origin: 50% 50%;
-    -webkit-transition: -webkit-transform 2s;
     transition: transform 2s;
-    height:13vmin
+    height: 13vmin
     transition-timing-function: linear;
+  &--img-touch-up
+    transition: transform 2s;
+    transition-timing-function: cubic-bezier(0, 0, 0.3, 1);
+
