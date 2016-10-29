@@ -19,7 +19,7 @@
     "unit:server:watch": "ava lib/server/**/*.spec.js --source 'lib/server/**/*!(spec).js' --require babel-register --watch ",
     "unit": "npm run unit:server && npm run unit:browser",
     "unit:watch": "npm run unit:server:watch & npm run unit:browser:watch",
-    "build": "npm run clean && npm run lint &&  npm run browser:build && npm run unit",
+    "build": "npm run clean && npm run browser:build && npm run unit",
     "lint": "eslint lib/ --ignore-pattern=lib/**/*.spec.js",
     "lint:fix": "eslint lib/ --ignore-pattern=lib/**/*.spec.js --fix"
   },
