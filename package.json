@@ -21,7 +21,7 @@
     "unit": "npm run unit:server && npm run unit:browser",
     "unit:watch": "npm run unit:server:watch & npm run unit:browser:watch",
     "build": "npm run clean && npm run browser:build && npm run unit",
-    "lint": "eslint --ext .js --ext .jsx lib/ --ignore-pattern=lib/**/*.spec.js",
+    "lint": "eslint --ext .js --ext .jsx lib/",
     "lint:fix": "npm run lint -- --fix"
   },
   "author": "Ben Lenser",

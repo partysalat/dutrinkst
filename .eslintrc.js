@@ -9,7 +9,7 @@ module.exports = {
         "document": true
     },
     rules:{
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/browser/**/*"]}],
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/browser/**/*","**/*.spec.js"]}],
 
 
     }
