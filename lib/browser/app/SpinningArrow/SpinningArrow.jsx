@@ -14,7 +14,7 @@ class SpinningArrow extends Component {
     let rotation = this.calcRotationFromProps();
     return (
       <div className="spinning-arrow">
-        <img style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left.png" />
+        <img style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png" />
       </div>
     );
   }

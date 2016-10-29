@@ -88,70 +88,17 @@ class App extends Component {
   }
 
   getSign(direction, quadrant) {
-    var sign = 0;
     var signArr;
     if ((direction === "right")) {
-      switch (quadrant) {
-        case 1:
-          sign = 1;
-          break;
-        case 2:
-          sign = 1;
-          break;
-        case 3:
-          sign = -1;
-          break;
-        case 4:
-          sign = -1;
-          break;
-      }
+      signArr = [1, 1, -1, -1];
     } else if ((direction === "left")) {
-      switch (quadrant) {
-        case 1:
-          sign = -1;
-          break;
-        case 2:
-          sign = -1;
-          break;
-        case 3:
-          sign = 1;
-          break;
-        case 4:
-          sign = 1;
-          break;
-      }
+      signArr = [-1, -1, 1, 1];
     } else if ((direction === "up")) {
-      switch (quadrant) {
-        case 1:
-          sign = -1;
-          break;
-        case 2:
-          sign = 1;
-          break;
-        case 3:
-          sign = 1;
-          break;
-        case 4:
-          sign = -1;
-          break;
-      }
+      signArr = [-1, 1, 1, -1];
     } else if ((direction === "down")) {
-      switch (quadrant) {
-        case 1:
-          sign = 1;
-          break;
-        case 2:
-          sign = -1;
-          break;
-        case 3:
-          sign = -1;
-          break;
-        case 4:
-          sign = 1;
-          break;
-      }
+      signArr = [1, -1, -1, 1];
     }
-    return sign;
+    return signArr[quadrant-1];
   }
 
   touchMove(e) {
@@ -167,7 +114,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>DU TRINKST!</h1>
+        <h1 className="headline">_du trinkst!</h1>
         <div
           ref="swiping"
           className={["app", this.state.started ? "" : "touch-up paused"].join(" ")}
