@@ -1,114 +1,54 @@
-import './index.styl'
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import _ from 'lodash';
 import SpinningArrow from './SpinningArrow/SpinningArrow';
-import _ from "lodash"
+import {calcCentralizedEvent,calcDistance} from './distanceService';
+import './index.styl';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleTouchMove = _.throttle(this.handleTouchMove, 50, {trailing: false});
+    this.handleTouchMove = _.throttle(this.handleTouchMove, 50, { trailing: false });
     this.state = {
       started: false,
       lastDistance: 0,
       finalDegree: 0,
-      lastTouch: {left: 0, top: 0}
+      lastTouch: { left: 0, top: 0 },
     };
   }
 
   touchStart(e) {
     this.setState({
       started: true,
-      lastTouch: this.calcCentralizedEvent(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+      lastTouch: calcCentralizedEvent(this.refs.swiping,e.targetTouches[0].clientX, e.targetTouches[0].clientY),
     });
   }
 
   touchEnd() {
     this.setState({
-      //initialDegree:this.state.finalDegree,
       started: false,
-      finalDegree: this.state.finalDegree + this.state.lastDistance * 10
+      finalDegree: this.state.finalDegree + this.state.lastDistance * 10,
     });
   }
 
-
-  calcCentralizedEvent(touchPointX, touchPointY) {
-    let target = this.refs.swiping;
-    let targetRect = target.getBoundingClientRect();
-    return {
-      left: touchPointX - (targetRect.left + targetRect.width * 0.5),
-      top: (targetRect.top + targetRect.height * 0.5) - touchPointY,
-    };
-  }
-
-  calcDistance(a, b) {
-    return Math.sqrt((a.left - b.left) * (a.left - b.left) + (a.top - b.top) * (a.top - b.top));
-  }
-
-  normalize(a) {
-    let abs = Math.sqrt(a.left * a.left + a.top * a.top);
-    return {
-      left: a.left / abs,
-      top: a.top / abs
-    }
-  }
-
-  getQuadrant(touch) {
-    if (touch.left > 0 && touch.top > 0) {
-      return 1
-    }
-    if (touch.left < 0 && touch.top > 0) {
-      return 2
-    }
-    if (touch.left < 0 && touch.top < 0) {
-      return 3
-    }
-    return 4
-  }
-
-  getDirection(newTouch, lastTouch) {
-    if (Math.abs(newTouch.left - lastTouch.left) > Math.abs(newTouch.top - lastTouch.top)) {
-      return newTouch.left > lastTouch.left ? "right" : "left";
-    } else {
-      return newTouch.top > lastTouch.top ? "up" : "down";
-    }
-  }
 
   handleTouchMove(x, y) {
-    let newTouch = this.calcCentralizedEvent(x, y);
-    let lastTouch = this.state.lastTouch;
-    let distance = this.calcDistance(this.normalize(newTouch), this.normalize(this.state.lastTouch));
-    let quadrant = this.getQuadrant(newTouch);
-    let direction = this.getDirection(newTouch, lastTouch);
-    let sign = this.getSign(direction, quadrant);
+    const newTouch = calcCentralizedEvent(this.refs.swiping,x,y);
+    const distance = calcDistance(newTouch,this.state.lastTouch);
     this.setState({
-      lastDistance: sign * distance,
+      lastDistance: distance,
       lastTouch: newTouch,
-      finalDegree: this.state.finalDegree + sign * distance
+      finalDegree: this.state.finalDegree + distance,
     });
   }
 
-  getSign(direction, quadrant) {
-    var signArr;
-    if ((direction === "right")) {
-      signArr = [1, 1, -1, -1];
-    } else if ((direction === "left")) {
-      signArr = [-1, -1, 1, 1];
-    } else if ((direction === "up")) {
-      signArr = [-1, 1, 1, -1];
-    } else if ((direction === "down")) {
-      signArr = [1, -1, -1, 1];
-    }
-    return signArr[quadrant-1];
-  }
 
   touchMove(e) {
     this.handleTouchMove(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
     e.nativeEvent.preventDefault();
-
   }
 
   touchCancel(e) {
-    //console.log(e)
+    // console.log(e)
   }
 
   render() {
@@ -117,11 +57,12 @@ class App extends Component {
         <h1 className="headline">_du trinkst!</h1>
         <div
           ref="swiping"
-          className={["app", this.state.started ? "" : "touch-up paused"].join(" ")}
+          className={['app', this.state.started ? '' : 'touch-up paused'].join(' ')}
           onTouchCancel={this.touchCancel}
           onTouchEnd={this.touchEnd.bind(this)}
           onTouchMove={this.touchMove.bind(this)}
-          onTouchStart={this.touchStart.bind(this)}>
+          onTouchStart={this.touchStart.bind(this)}
+        >
           <SpinningArrow
             finalDegree={this.state.finalDegree}
           />
