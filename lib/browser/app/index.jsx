@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import SpinningArrow from './SpinningArrow/SpinningArrow';
-import {calcCentralizedEvent,calcDistance} from './distanceService';
+import { calcCentralizedEvent, calcDistance } from './distanceService';
 import './index.styl';
 
 class App extends Component {
@@ -19,21 +19,25 @@ class App extends Component {
   touchStart(e) {
     this.setState({
       started: true,
-      lastTouch: calcCentralizedEvent(this.refs.swiping,e.targetTouches[0].clientX, e.targetTouches[0].clientY),
+      lastTouch: calcCentralizedEvent(
+        this.swiping,
+        e.targetTouches[0].clientX,
+        e.targetTouches[0].clientY
+      ),
     });
   }
 
   touchEnd() {
     this.setState({
       started: false,
-      finalDegree: this.state.finalDegree + this.state.lastDistance * 10,
+      finalDegree: this.state.finalDegree + (this.state.lastDistance * 10),
     });
   }
 
 
   handleTouchMove(x, y) {
-    const newTouch = calcCentralizedEvent(this.refs.swiping,x,y);
-    const distance = calcDistance(newTouch,this.state.lastTouch);
+    const newTouch = calcCentralizedEvent(this.swiping, x, y);
+    const distance = calcDistance(newTouch, this.state.lastTouch);
     this.setState({
       lastDistance: distance,
       lastTouch: newTouch,
@@ -47,21 +51,19 @@ class App extends Component {
     e.nativeEvent.preventDefault();
   }
 
-  touchCancel(e) {
-    // console.log(e)
-  }
 
   render() {
     return (
       <div>
         <h1 className="headline">_du trinkst!</h1>
         <div
-          ref="swiping"
+          ref={(swiping) => {
+            this.swiping = swiping;
+          }}
           className={['app', this.state.started ? '' : 'touch-up paused'].join(' ')}
-          onTouchCancel={this.touchCancel}
-          onTouchEnd={this.touchEnd.bind(this)}
-          onTouchMove={this.touchMove.bind(this)}
-          onTouchStart={this.touchStart.bind(this)}
+          onTouchEnd={e => this.touchEnd(e)}
+          onTouchMove={e => this.touchMove(e)}
+          onTouchStart={e => this.touchStart(e)}
         >
           <SpinningArrow
             finalDegree={this.state.finalDegree}

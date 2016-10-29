@@ -1,5 +1,5 @@
-import './SpinningArrow.styl';
 import React, { Component } from 'react';
+import './SpinningArrow.styl';
 
 class SpinningArrow extends Component {
 
@@ -14,9 +14,13 @@ class SpinningArrow extends Component {
     const rotation = this.calcRotationFromProps();
     return (
       <div className="spinning-arrow">
-        <img style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png" />
+        <img role="presentation" style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png" />
       </div>
     );
   }
 }
+
+SpinningArrow.propTypes = {
+  finalDegree: React.PropTypes.string,
+};
 export default SpinningArrow;
