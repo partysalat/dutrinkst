@@ -10,10 +10,11 @@ class SpinningArrow extends Component {
       WebkitTransform: `rotate(${finalDegree}rad)`,
     };
   }
+
   render() {
     const rotation = this.calcRotationFromProps();
     return (
-      <div className="spinning-arrow">
+      <div className={['spinning-arrow', this.props.started ? '' : 'touch-up'].join(' ')}>
         <img role="presentation" style={rotation} className="spinning-arrow-img" src="https://d2bd4hfewq4seu.cloudfront.net/images/arrow_left2.png" />
       </div>
     );
@@ -22,5 +23,6 @@ class SpinningArrow extends Component {
 
 SpinningArrow.propTypes = {
   finalDegree: React.PropTypes.number,
+  started: React.PropTypes.bool,
 };
 export default SpinningArrow;

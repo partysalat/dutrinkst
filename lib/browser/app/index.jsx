@@ -55,17 +55,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 className="headline">_du trinkst!</h1>
+        <h1 className="app-headline">_du trinkst!</h1>
         <div
           ref={(swiping) => {
             this.swiping = swiping;
           }}
-          className={['app', this.state.started ? '' : 'touch-up paused'].join(' ')}
+          className={'app'}
           onTouchEnd={e => this.touchEnd(e)}
           onTouchMove={e => this.touchMove(e)}
           onTouchStart={e => this.touchStart(e)}
         >
           <SpinningArrow
+            started={this.state.started}
             finalDegree={this.state.finalDegree}
           />
 
