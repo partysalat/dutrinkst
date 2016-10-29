@@ -21,6 +21,6 @@ class SpinningArrow extends Component {
 }
 
 SpinningArrow.propTypes = {
-  finalDegree: React.PropTypes.string,
+  finalDegree: React.PropTypes.number,
 };
 export default SpinningArrow;
