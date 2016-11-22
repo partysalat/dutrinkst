@@ -28,9 +28,10 @@ class App extends Component {
   }
 
   touchEnd() {
+    const randomWeight = this.state.lastDistance > 0 ? Math.random() * 10 : -Math.random() * 10;
     this.setState({
       started: false,
-      finalDegree: this.state.finalDegree + (this.state.lastDistance * 10),
+      finalDegree: this.state.finalDegree + (this.state.lastDistance * 10) + randomWeight,
     });
   }
 
@@ -71,6 +72,7 @@ class App extends Component {
           />
 
         </div>
+        <div className="copyright">Created by B&sup2;</div>
       </div>
     );
   }
