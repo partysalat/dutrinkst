@@ -60,7 +60,7 @@ class App extends Component {
           ref={(swiping) => {
             this.swiping = swiping;
           }}
-          className={'app'}
+          className="app"
           onTouchEnd={e => this.touchEnd(e)}
           onTouchMove={e => this.touchMove(e)}
           onTouchStart={e => this.touchStart(e)}
